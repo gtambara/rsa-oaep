@@ -84,19 +84,19 @@ def oaepDecode(message: bytes, label, modulus: int) -> bytes:
     hLabel = sha256(bytes(label, "UTF-8"))
     hLen = len(hLabel)
     modSize = modulus.bit_length() // 8
-    
+
     if(modSize < 2*hLen + 2):
-        print("1Decription error. Exiting program...")
+        print("Decription error. Exiting program...")
         exit()
 
     if(len(message) != modSize):
-        print("2Decription error. Exiting program...")
+        print("Decription error. Exiting program...")
         exit()
 
     buff = bytearray()
     buff.append(message[0])
     if(buff != b"\x00"):
-        print("3Decription error. Exiting program...")
+        print("Decription error. Exiting program...")
         exit()
 
     maskedSeed = message[1:hLen+1]
@@ -108,7 +108,7 @@ def oaepDecode(message: bytes, label, modulus: int) -> bytes:
     hLabelNew = dataBlock[:hLen]
 
     if(hLabel != hLabelNew):
-        print("4Decription error. Exiting program...")
+        print("Decription error. Exiting program...")
         exit()
 
     newBlock = dataBlock[hLen:]
@@ -123,9 +123,9 @@ def oaepDecode(message: bytes, label, modulus: int) -> bytes:
             if buff == b"\x01":
                 break
             else:
-                print("5Decription error. Exiting program...")
+                print("Decription error. Exiting program...")
                 exit()
-    
+
     return newBlock[count+1:]
 
 #lol = 72153539777587845103859381066006852762962962387435662821441938884912206671456126962113971261813914781559392025692166551814336386193848850548040130331506731175349656559485194768791649042139948748349801071236130253493643874818035571955711200751926667139833943356777236786788648538319432778611435694099700476006256638661488525619978424189507946593677788546241375514275915035

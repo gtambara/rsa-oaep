@@ -51,11 +51,6 @@ def GenRSAKey(keysize: int):
     p = genRandomPrime(primeSize)
     q = genRandomPrime(primeSize)
     n = p * q   # RSA modulus
-#    while(n.bit_length() // 8 < keysize):
-#        primeSize = primeSize + (primeSize // 2)
-#        p = genRandomPrime(primeSize)
-#        q = genRandomPrime(primeSize)
-#        n = p * q   # RSA modulus
 
     while True:
         e = rnd.randrange(2 ** (1024 - 1), 2 ** (1024))
@@ -69,6 +64,9 @@ def GenRSAKey(keysize: int):
 
     return publicKey, privateKey
 
+"""
+Store 'key' in a folder specified in 'path'
+"""
 def store_keys(key, path):
     with open(path, "wb+") as f:
         for i in key:
@@ -77,6 +75,9 @@ def store_keys(key, path):
             f.write(b'\n')
         f.close()
 
+"""
+Import data from a folder specified in 'path'
+"""
 def import_keys(path):
     with open(path, "r") as f:
         key = [line.rstrip() for line in f]

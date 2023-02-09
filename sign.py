@@ -2,7 +2,7 @@ from rsa import *
 from key import *
 from oaep import sha256
 
-def importDataToEncript(path: str):
+def importData(path: str):
     with open(path, "r") as f:
         data = f.read()
         f.close()
